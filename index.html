@@ -11,6 +11,7 @@ body{
   font-family:Arial;
   background:linear-gradient(135deg,#ff9ec4,#ffd6e8);
   text-align:center;
+  overflow:hidden;
 }
 
 /* Pages */
@@ -22,6 +23,14 @@ h1{font-size:32px;color:#ff2f92;}
 /* Text */
 .option,.wish{font-size:18px;margin:8px;}
 
+.quote{
+  font-size:18px;
+  margin:10px;
+  color:#444;
+  min-height:24px;
+}
+
+/* Kannada */
 .kannada{
   font-size:20px;
   margin:12px;
@@ -62,6 +71,22 @@ button{
   animation:glow 1.5s infinite;
 }
 @keyframes glow{50%{text-shadow:0 0 15px gold;}}
+
+/* Confetti */
+.confetti{
+  position:fixed;
+  width:8px;height:8px;
+  background:red;
+  top:50%;
+  left:50%;
+  animation:explode 1s linear forwards;
+}
+@keyframes explode{
+  to{
+    transform:translate(var(--x),var(--y));
+    opacity:0;
+  }
+}
 </style>
 </head>
 
@@ -69,6 +94,12 @@ button{
 
 <!-- PAGE 1 -->
 <div id="page1">
+  <h1>💖 Before we begin... 💖</h1>
+
+  <div class="quote" id="q1"></div>
+  <div class="quote" id="q2"></div>
+  <div class="quote" id="q3"></div>
+
   <h1>🎓 Choose your mood 😄</h1>
 
   <div class="option"><label><input type="radio" name="mood"> Fully decided</label></div>
@@ -107,13 +138,13 @@ button{
 
 </div>
 
-<!-- PAGE 3 (ENDING) -->
+<!-- PAGE 3 -->
 <div id="page3">
   <h1>💖 For You 💖</h1>
 
-  <div class="kannada">
-ನೀನು ಸದಾ ನಗುತ್ತಿರು 😊<br>
-ನಿನ್ನ ಜೀವನ ಸದಾ ಸಂತೋಷದಿಂದಿರಲಿ 💕
+  <div class="wish">
+    💫 No matter what happens,<br>
+    always keep smiling 😊💖
   </div>
 
   <div class="end">
@@ -122,6 +153,31 @@ button{
 </div>
 
 <script>
+
+/* Typing Effect */
+let quotes=[
+ "✨ Some people make the world brighter just by being in it.",
+ "💫 You are one of those rare souls who brings happiness .",
+ "🌸 You are special because Today exist.You are special because you made me to express about you,for the first time i could ever made to someone.",
+  "I truly want to see you as a successful person" ,
+  "Have a great future ahead"
+];
+
+function typeText(id,text,delay){
+ let i=0;
+ setTimeout(()=>{
+  let interval=setInterval(()=>{
+    if(i<text.length){
+      document.getElementById(id).innerHTML+=text[i];
+      i++;
+    }else clearInterval(interval);
+  },40);
+ },delay);
+}
+
+typeText("q1",quotes[0],0);
+typeText("q2",quotes[1],1500);
+typeText("q3",quotes[2],3000);
 
 /* Navigation */
 function goNext(){
@@ -132,15 +188,16 @@ function goNext(){
 function goEnd(){
   document.getElementById("page2").style.display="none";
   document.getElementById("page3").style.display="block";
+  confettiBlast();
 }
 
-/* Candle messages */
+/* Candles */
 let messages=[
- "💖 You make life beautiful",
- "😂 Still acting like kid",
+ "💖 You make your life beautiful",
+ "😂 Stop fighting with me",
  "✨ Shine like a star",
  "🍰 Eat more cake",
- "💃 Dance like crazy",
+ "💃 achive your goal",
  "🌈 Happiness unlimited",
  "🧸 Always stay cute",
  "🔥 Be unstoppable",
@@ -168,22 +225,35 @@ function showSurprise(){
  document.getElementById("surprise").style.display="block";
 }
 
-/* 5 Funny Questions */
+/* Funny Questions */
 function funQuestions(){
- let q1=prompt("Are you getting old? 😏 (yes/no)");
- alert(q1=="yes"?"😂 Accepted finally!":"🤣 Denial level max");
+ let q1=prompt("Are you getting old? 😏");
+ alert("😂 No escape!");
 
- let q2=prompt("How many cakes will you eat today? 🍰");
+ let q2=prompt("How many cakes today? 🍰");
  alert("😋 Not enough!");
 
  let q3=prompt("Are you treating me? 😎");
- alert("💸 You have no option");
+ alert("💸 Obviously yes");
 
- let q4=prompt("Are you still single? 🤭");
- alert("😂 Interesting answer");
+ let q4=prompt("Still single? 🤭");
+ alert("😂 Suspicious answer");
 
- let q5=prompt("Who is the best person in your life?");
- alert("💖 Correct answer = ME 😌");
+ let q5=prompt("Who is best person?");
+ alert("💖 Me only 😌");
+}
+
+/* Confetti */
+function confettiBlast(){
+ for(let i=0;i<80;i++){
+  let c=document.createElement("div");
+  c.className="confetti";
+  c.style.background=`hsl(${Math.random()*360},100%,60%)`;
+  c.style.setProperty("--x",(Math.random()*400-200)+"px");
+  c.style.setProperty("--y",(Math.random()*400-200)+"px");
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),1000);
+ }
 }
 
 </script>
