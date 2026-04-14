@@ -14,10 +14,24 @@ body{
   overflow:hidden;
 }
 
+/* Page 1 */
+#page1{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.option{
+  font-size:18px;
+  margin:8px;
+}
+
 /* Title */
 h1{
-  margin-top:30px;
-  font-size:36px;
+  margin-top:20px;
+  font-size:34px;
   color:#ff2f92;
   animation:glow 1.5s infinite;
 }
@@ -41,6 +55,11 @@ button{
   background:#ff2f92;
   color:white;
   margin:8px;
+}
+
+/* Page 2 */
+#page2{
+  display:none;
 }
 
 /* Surprise */
@@ -92,10 +111,32 @@ button{
 
 <body onclick="hearts(event)">
 
+<!-- PAGE 1 -->
+<div id="page1">
+  <h1>🎓 Choose your mood 😄</h1>
+
+  <div class="option">
+    <label><input type="radio" name="study" onclick="selectOption('Fully decided')"> Fully decided</label>
+  </div>
+
+  <div class="option">
+    <label><input type="radio" name="study" onclick="selectOption('Planning')"> Planning</label>
+  </div>
+
+  <div class="option">
+    <label><input type="radio" name="study" onclick="selectOption('Exploring')"> Exploring</label>
+  </div>
+
+  <button onclick="goNext()">Continue ➡️</button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2">
+
 <h1>🎉 Happiest Birthday Sakee 💖🎂</h1>
 
 <div class="wish">😂 You are not older… just upgraded version 😎</div>
-<div class="wish">🍰 Cake calories don’t count today!(science explaine)</div>
+<div class="wish">🍰 Cake calories don’t count today!</div>
 <div class="wish">💖 Stay cute, but don’t compete with me 😏</div>
 <div class="wish">✨ May your life be full of love & laughter</div>
 <div class="wish">🧸 Soft heart + crazy mind = YOU 💯</div>
@@ -120,7 +161,20 @@ button{
 <div class="balloon" style="left:70%;background:white"></div>
 <div class="balloon" style="left:90%;background:skyblue"></div>
 
+</div>
+
 <script>
+
+/* Move to next page */
+function goNext(){
+  document.getElementById("page1").style.display="none";
+  document.getElementById("page2").style.display="block";
+}
+
+/* Radio select */
+function selectOption(choice){
+  alert("You selected: " + choice + " 🎓");
+}
 
 /* Candles */
 let messages=[
@@ -130,7 +184,6 @@ let messages=[
  "🍰 Eat more cake",
  "💃 Dance today",
  "🌈 Happiness unlimited"
- "Dont fight with me "
 ];
 let i=0;
 
@@ -169,6 +222,7 @@ function hearts(e){
  document.body.appendChild(h);
  setTimeout(()=>h.remove(),4000);
 }
+
 </script>
 
 </body>
