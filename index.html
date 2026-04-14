@@ -15,20 +15,15 @@ body{
 }
 
 /* Pages */
-#page2,#page3{display:none;}
+#page2{display:none;}
 
 /* Title */
 h1{font-size:32px;color:#ff2f92;}
 
 /* Text */
-.option,.wish{font-size:18px;margin:8px;}
+.wish,.quote{font-size:18px;margin:8px;}
 
-.quote{
-  font-size:18px;
-  margin:10px;
-  color:#444;
-  min-height:24px;
-}
+.quote{min-height:24px;}
 
 /* Kannada */
 .kannada{
@@ -76,9 +71,7 @@ button{
 .confetti{
   position:fixed;
   width:8px;height:8px;
-  background:red;
-  top:50%;
-  left:50%;
+  top:50%;left:50%;
   animation:explode 1s linear forwards;
 }
 @keyframes explode{
@@ -94,35 +87,18 @@ button{
 
 <!-- PAGE 1 -->
 <div id="page1">
-  <h1>💖 Before we begin... 💖</h1>
 
-  <div class="quote" id="q1"></div>
-  <div class="quote" id="q2"></div>
-  <div class="quote" id="q3"></div>
+<h1>💖 Happiest Birthday Sakee 💖</h1>
 
-  <h1>🎓 Choose your mood 😄</h1>
-
-  <div class="option"><label><input type="radio" name="mood"> Fully decided</label></div>
-  <div class="option"><label><input type="radio" name="mood"> Planning</label></div>
-  <div class="option"><label><input type="radio" name="mood"> Exploring</label></div>
-
-  <button onclick="goNext()">Continue ➡️</button>
-</div>
-
-<!-- PAGE 2 -->
-<div id="page2">
-
-<h1>🎉 Happiest Birthday Sakee 💖🎂</h1>
+<!-- Typing Quotes -->
+<div class="quote" id="q1"></div>
+<div class="quote" id="q2"></div>
+<div class="quote" id="q3"></div>
 
 <div class="wish">😂 You are not older… just upgraded version 😎</div>
 <div class="wish">🍰 Cake calories don’t count today!</div>
 <div class="wish">💖 Stay cute, but don’t compete with me 😏</div>
 <div class="wish">✨ May your life be full of love & laughter</div>
-
-<div class="kannada">
-ಸುಖ ಸಮೃದ್ಧಿ, ಆಯಸ್ಸು, ಐಶ್ವರ್ಯ ಎಲ್ಲ ನಿನ್ನ ಬದುಕು ಬೆಳಗಲಿ 💜<br>
-ಹುಟ್ಟು ಹಬ್ಬದ ಹಾರ್ದಿಕ ಶುಭಾಶಯಗಳು ಕೀರ್ತನಾ 🎉
-</div>
 
 <h3>🎂 Tap candles</h3>
 <div id="candles"></div>
@@ -138,25 +114,29 @@ button{
 
 </div>
 
-<!-- PAGE 3 -->
-<div id="page3">
-  <h1>💖 For You 💖</h1>
+<!-- PAGE 2 (FINAL PAGE) -->
+<div id="page2">
 
-  <div class="wish">
-    💫 No matter what happens,<br>
-    always keep smiling 😊💖
-  </div>
+<h1>💖 For You 💖</h1>
 
-  <div class="end">
-    💌 From your San 💖
-  </div>
+<div class="kannada">
+ಸುಖ ಸಮೃದ್ಧಿ, ಆಯಸ್ಸು, ಐಶ್ವರ್ಯ ಎಲ್ಲ ನಿನ್ನ ಬದುಕು ಬೆಳಗಲಿ 💜<br><br>
+ಹುಟ್ಟು ಹಬ್ಬದ ಹಾರ್ದಿಕ ಶುಭಾಶಯಗಳು ಕೀರ್ತನಾ 🎉<br><br>
+ನೀನು ಸದಾ ನಗುತ್ತಿರು 😊<br>
+ನಿನ್ನ ಜೀವನ ಸದಾ ಸಂತೋಷದಿಂದಿರಲಿ 💕
+</div>
+
+<div class="end">
+  💌 From your San 💖
+</div>
+
 </div>
 
 <script>
 
 /* Typing Effect */
 let quotes=[
- "✨ Some people make the world brighter just by being in it.",
+"✨ Some people make the world brighter just by being in it.",
  "💫 You are one of those rare souls who brings happiness .",
  "🌸 You are special because Today exist.You are special because you made me to express about you,for the first time i could ever made to someone.",
   "I truly want to see you as a successful person" ,
@@ -180,29 +160,24 @@ typeText("q2",quotes[1],1500);
 typeText("q3",quotes[2],3000);
 
 /* Navigation */
-function goNext(){
+function goEnd(){
   document.getElementById("page1").style.display="none";
   document.getElementById("page2").style.display="block";
-}
-
-function goEnd(){
-  document.getElementById("page2").style.display="none";
-  document.getElementById("page3").style.display="block";
   confettiBlast();
 }
 
 /* Candles */
 let messages=[
- "💖 You make life beautiful",
- "😂 Still acting like kid",
+ "💖 You make your  life beautiful",
+ "😂 Stop fighting with me",
  "✨ Shine like a star",
  "🍰 Eat more cake",
- "💃 Dance like crazy",
+ "💃 Achieve all",
  "🌈 Happiness unlimited",
  "🧸 Always stay cute",
  "🔥 Be unstoppable",
- "💫 Dream big",
- "❤️ Loved forever"
+ "💫 Dream big"
+ 
 ];
 
 let i=0;
@@ -227,19 +202,19 @@ function showSurprise(){
 
 /* Funny Questions */
 function funQuestions(){
- let q1=prompt("Are you getting old? 😏");
+ prompt("Are you getting old? 😏");
  alert("😂 No escape!");
 
- let q2=prompt("How many cakes today? 🍰");
+ prompt("How many cakes today? 🍰");
  alert("😋 Not enough!");
 
- let q3=prompt("Are you treating me? 😎");
+ prompt("Are you treating me? 😎");
  alert("💸 Obviously yes");
 
- let q4=prompt("Still single? 🤭");
+ prompt("Still single? 🤭");
  alert("😂 Suspicious answer");
 
- let q5=prompt("Who is best person?");
+ prompt("Who is best person?");
  alert("💖 Me only 😌");
 }
 
