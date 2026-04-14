@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Happiest Birthday Sakee 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:linear-gradient(135deg,#ff9ec4,#ffd6e8);
+  text-align:center;
+  overflow:hidden;
+}
+
+/* Title */
+h1{
+  margin-top:30px;
+  font-size:36px;
+  color:#ff2f92;
+  animation:glow 1.5s infinite;
+}
+@keyframes glow{
+  50%{text-shadow:0 0 20px gold;}
+}
+
+/* Wishes */
+.wish{
+  font-size:20px;
+  margin:8px;
+  color:#444;
+}
+
+/* Button */
+button{
+  padding:12px 25px;
+  font-size:18px;
+  border:none;
+  border-radius:20px;
+  background:#ff2f92;
+  color:white;
+  margin:8px;
+}
+
+/* Surprise */
+#surprise{
+  display:none;
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  width:250px;
+  margin:auto;
+  color:#ff2f92;
+  font-size:18px;
+}
+
+/* Candles */
+.candle{
+  font-size:28px;
+  cursor:pointer;
+}
+#msg{
+  color:#ff2f92;
+  font-size:18px;
+  margin-top:10px;
+}
+
+/* Hearts */
+.heart{
+  position:absolute;
+  font-size:20px;
+  animation:fall 4s linear infinite;
+}
+@keyframes fall{
+  to{transform:translateY(110vh);}
+}
+
+/* Balloons */
+.balloon{
+  position:absolute;
+  bottom:-100px;
+  width:40px;height:60px;
+  border-radius:50%;
+  animation:float 6s infinite;
+}
+@keyframes float{
+  to{transform:translateY(-120vh);}
+}
+</style>
+</head>
+
+<body onclick="hearts(event)">
+
+<h1>🎉 Happiest Birthday Sakee 💖🎂</h1>
+
+<div class="wish">😂 You are not older… just upgraded version 😎</div>
+<div class="wish">🍰 Cake calories don’t count today!(science explaine)</div>
+<div class="wish">💖 Stay cute, but don’t compete with me 😏</div>
+<div class="wish">✨ May your life be full of love & laughter</div>
+<div class="wish">🧸 Soft heart + crazy mind = YOU 💯</div>
+
+<h3>🎂 Tap candles</h3>
+<div id="candles"></div>
+<div id="msg"></div>
+
+<button onclick="showSurprise()">🎁 Surprise</button>
+<button onclick="funQuestions()">😂 Fun Questions</button>
+
+<div id="surprise">
+  💖 You are very special!<br><br>
+  😂 But still not matured 🤭<br><br>
+  Stay happy always 🥰
+</div>
+
+<!-- Balloons -->
+<div class="balloon" style="left:10%;background:white"></div>
+<div class="balloon" style="left:30%;background:skyblue"></div>
+<div class="balloon" style="left:50%;background:pink"></div>
+<div class="balloon" style="left:70%;background:white"></div>
+<div class="balloon" style="left:90%;background:skyblue"></div>
+
+<script>
+
+/* Candles */
+let messages=[
+ "💖 You make life beautiful",
+ "😂 Still acting like kid",
+ "✨ Shine always",
+ "🍰 Eat more cake",
+ "💃 Dance today",
+ "🌈 Happiness unlimited"
+ "Dont fight with me "
+];
+let i=0;
+
+for(let j=0;j<10;j++){
+ let c=document.createElement("span");
+ c.className="candle";
+ c.innerHTML="🕯️";
+ c.onclick=()=>{
+  if(i<messages.length){
+   document.getElementById("msg").innerText=messages[i++];
+  }
+ };
+ document.getElementById("candles").appendChild(c);
+}
+
+/* Surprise */
+function showSurprise(){
+ document.getElementById("surprise").style.display="block";
+}
+
+/* Questions */
+function funQuestions(){
+ alert("Are you happy? 😊");
+ alert("You better be 😎");
+ alert("Are you foodie? 🍕");
+ alert("Then share food 🤭");
+}
+
+/* Hearts */
+function hearts(e){
+ let h=document.createElement("div");
+ h.className="heart";
+ h.innerHTML="💖";
+ h.style.left=e.clientX+"px";
+ h.style.top=e.clientY+"px";
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),4000);
+}
+</script>
+
+</body>
+</html>
