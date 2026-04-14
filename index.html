@@ -11,120 +11,81 @@ body{
   font-family:Arial;
   background:linear-gradient(135deg,#ff9ec4,#ffd6e8);
   text-align:center;
-  overflow:hidden;
 }
 
-/* Page 1 */
-#page1{
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-}
-
-.option{
-  font-size:18px;
-  margin:8px;
-}
+/* Page control */
+#page2{display:none;}
 
 /* Title */
 h1{
-  margin-top:20px;
-  font-size:34px;
+  font-size:32px;
   color:#ff2f92;
-  animation:glow 1.5s infinite;
-}
-@keyframes glow{
-  50%{text-shadow:0 0 20px gold;}
 }
 
-/* Wishes */
-.wish{
-  font-size:20px;
-  margin:8px;
-  color:#444;
+/* Options */
+.option{
+  font-size:18px;
+  margin:10px;
 }
 
 /* Button */
 button{
-  padding:12px 25px;
-  font-size:18px;
+  padding:10px 20px;
   border:none;
   border-radius:20px;
   background:#ff2f92;
   color:white;
-  margin:8px;
+  margin:10px;
+  font-size:16px;
 }
 
-/* Page 2 */
-#page2{
-  display:none;
+/* Wishes */
+.wish{
+  font-size:18px;
+  margin:6px;
+}
+
+/* Candles */
+.candle{
+  font-size:26px;
+  cursor:pointer;
+}
+
+/* Message */
+#msg{
+  color:#ff2f92;
+  margin-top:10px;
 }
 
 /* Surprise */
 #surprise{
   display:none;
   background:white;
-  padding:20px;
-  border-radius:15px;
+  padding:15px;
+  border-radius:10px;
   width:250px;
   margin:auto;
   color:#ff2f92;
-  font-size:18px;
-}
-
-/* Candles */
-.candle{
-  font-size:28px;
-  cursor:pointer;
-}
-#msg{
-  color:#ff2f92;
-  font-size:18px;
-  margin-top:10px;
-}
-
-/* Hearts */
-.heart{
-  position:absolute;
-  font-size:20px;
-  animation:fall 4s linear infinite;
-}
-@keyframes fall{
-  to{transform:translateY(110vh);}
-}
-
-/* Balloons */
-.balloon{
-  position:absolute;
-  bottom:-100px;
-  width:40px;height:60px;
-  border-radius:50%;
-  animation:float 6s infinite;
-}
-@keyframes float{
-  to{transform:translateY(-120vh);}
 }
 </style>
 </head>
 
-<body onclick="hearts(event)">
+<body>
 
 <!-- PAGE 1 -->
 <div id="page1">
   <h1>🎓 Choose your mood 😄</h1>
 
   <div class="option">
-    <label><input type="radio" name="study" onclick="selectOption('Fully decided')"> Fully decided</label>
+    <label><input type="radio" name="mood"> Fully decided</label>
   </div>
 
   <div class="option">
-    <label><input type="radio" name="study" onclick="selectOption('Planning')"> Planning</label>
+    <label><input type="radio" name="mood"> Planning</label>
   </div>
 
   <div class="option">
-    <label><input type="radio" name="study" onclick="selectOption('Exploring')"> Exploring</label>
+    <label><input type="radio" name="mood"> Exploring</label>
   </div>
 
   <button onclick="goNext()">Continue ➡️</button>
@@ -139,7 +100,6 @@ button{
 <div class="wish">🍰 Cake calories don’t count today!</div>
 <div class="wish">💖 Stay cute, but don’t compete with me 😏</div>
 <div class="wish">✨ May your life be full of love & laughter</div>
-<div class="wish">🧸 Soft heart + crazy mind = YOU 💯</div>
 
 <h3>🎂 Tap candles</h3>
 <div id="candles"></div>
@@ -154,26 +114,14 @@ button{
   Stay happy always 🥰
 </div>
 
-<!-- Balloons -->
-<div class="balloon" style="left:10%;background:white"></div>
-<div class="balloon" style="left:30%;background:skyblue"></div>
-<div class="balloon" style="left:50%;background:pink"></div>
-<div class="balloon" style="left:70%;background:white"></div>
-<div class="balloon" style="left:90%;background:skyblue"></div>
-
 </div>
 
 <script>
 
-/* Move to next page */
+/* Next page */
 function goNext(){
   document.getElementById("page1").style.display="none";
   document.getElementById("page2").style.display="block";
-}
-
-/* Radio select */
-function selectOption(choice){
-  alert("You selected: " + choice + " 🎓");
 }
 
 /* Candles */
@@ -182,18 +130,19 @@ let messages=[
  "😂 Still acting like kid",
  "✨ Shine always",
  "🍰 Eat more cake",
- "💃 Dance today",
- "🌈 Happiness unlimited"
+ "💃 Dance today"
 ];
+
 let i=0;
 
-for(let j=0;j<10;j++){
+for(let j=0;j<5;j++){
  let c=document.createElement("span");
  c.className="candle";
- c.innerHTML="🕯️";
- c.onclick=()=>{
+ c.innerHTML="🕯️ ";
+ c.onclick=function(){
   if(i<messages.length){
-   document.getElementById("msg").innerText=messages[i++];
+   document.getElementById("msg").innerText=messages[i];
+   i++;
   }
  };
  document.getElementById("candles").appendChild(c);
@@ -210,17 +159,6 @@ function funQuestions(){
  alert("You better be 😎");
  alert("Are you foodie? 🍕");
  alert("Then share food 🤭");
-}
-
-/* Hearts */
-function hearts(e){
- let h=document.createElement("div");
- h.className="heart";
- h.innerHTML="💖";
- h.style.left=e.clientX+"px";
- h.style.top=e.clientY+"px";
- document.body.appendChild(h);
- setTimeout(()=>h.remove(),4000);
 }
 
 </script>
